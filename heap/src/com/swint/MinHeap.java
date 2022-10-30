@@ -2,14 +2,14 @@ package com.swint;
 
 import java.util.Arrays;
 
-public class MaxHeap {
+public class MinHeap {
     final private int[] heapSize;
 
-    public MaxHeap(int[] heapSize) {
+    public MinHeap(int[] heapSize) {
         this.heapSize = heapSize;
     }
 
-    public void buildMaxHeap() {
+    public void buildMinHeap() {
 
         if (heapSize.length == 1) {
             return;
@@ -43,9 +43,9 @@ public class MaxHeap {
         int index = 0;
         int left = 1;
         while (left <= len - 1) {
-            int largeIndex = left + 1 <= len - 1 && arr[left + 1] > arr[left] ? left + 1 : left;
+            int largeIndex = left + 1 <= len - 1 && arr[left + 1] < arr[left] ? left + 1 : left;
 
-            if (arr[largeIndex] <= arr[index]) break;
+            if (arr[largeIndex] >= arr[index]) break;
 
             swap(largeIndex, index, arr);
 
@@ -57,7 +57,7 @@ public class MaxHeap {
     }
 
     private void inserToHeap(int index) {
-        while ((index - 1) / 2 >= 0 && heapSize[index] > heapSize[(index - 1) / 2]) {
+        while ((index - 1) / 2 >= 0 && heapSize[index] < heapSize[(index - 1) / 2]) {
             swap(index, (index - 1) / 2, heapSize);
             index = (index - 1) / 2;
         }
